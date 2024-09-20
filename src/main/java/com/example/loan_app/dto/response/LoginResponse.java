@@ -5,17 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AdminResponse {
-    private String id;
-    private String firstName;
-    private String lastName;
-    private Date dob;
-    private String phone;
-    private String status;
+public class LoginResponse {
+    private String token;
+    private List<String> roles;
 }

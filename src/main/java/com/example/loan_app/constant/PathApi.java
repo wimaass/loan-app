@@ -8,5 +8,6 @@ public class PathApi {
 
     public static final String AUTHENTICATE_API = LOAN_APP + "/auth";
     public static final String SIGN_UP_API= "/signup";
+    public static final String SIGN_IN = "/signin";
 
 }
