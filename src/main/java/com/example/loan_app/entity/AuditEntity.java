@@ -19,15 +19,15 @@ public class AuditEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-//    @CreatedBy
-//    private String createdBy;
-//
-//    @CreatedDate
-//    private LocalDateTime createdAt;
-//
-//    @LastModifiedBy
-//    private String modifiedBy;
-//
-//    @LastModifiedDate
-//    private LocalDateTime modifiedAt;
+    @CreatedBy
+    private String createdBy;
+
+    @CreatedDate
+    private LocalDateTime createdAt;
+
+    @LastModifiedBy
+    private String modifiedBy;
+
+    @LastModifiedDate
+    private LocalDateTime modifiedAt;
 }

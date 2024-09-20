@@ -9,17 +9,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 import java.util.Date;
 
 @Entity
-@Table(name = PathDb.CUSTOMER)
+@Table(name = PathDb.ADMIN)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Customer extends AuditEntity{
+public class Admin extends AuditEntity{
     @Column(name = "first_name", nullable = false)
     private String firstName;
 

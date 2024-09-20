@@ -1,6 +1,5 @@
-package com.example.loan_app.dto.request;
+package com.example.loan_app.dto.response;
 
-import com.example.loan_app.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,12 +11,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CustomerRequest {
+public class AdminResponse {
     private String id;
     private String firstName;
     private String lastName;
     private Date dob;
     private String phone;
     private String status;
-    private User user;
 }

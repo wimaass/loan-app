@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CustomerRequest {
+public class AdminRequest {
     private String id;
     private String firstName;
     private String lastName;

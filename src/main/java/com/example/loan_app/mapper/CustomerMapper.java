@@ -25,4 +25,15 @@ public class CustomerMapper {
                 .dob(customer.getDateOfBirth())
                 .build();
     }
+
+    public static CustomerRequest mapToCustomerRequest(Customer customer) {
+        return CustomerRequest.builder()
+                .firstName(customer.getFirstName())
+                .lastName(customer.getLastName())
+                .phone(customer.getPhone())
+                .status(customer.getStatus())
+                .dob(customer.getDateOfBirth())
+                .user(customer.getUser())
+                .build();
+    }
 }
