@@ -8,15 +8,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
+@Table(name = PathDb.ROLES)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AppUser extends AuditEntity{
-    private String email;
-    private String password;
-    private List<Role> roles;
+public class Role extends AuditEntity{
+    private ERole role;
 }

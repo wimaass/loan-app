@@ -61,4 +61,16 @@ public class CustomerController {
                 .status(statusCode)
                 .body(response);
     }
+
+    @DeleteMapping(PathApi.GET_ID)
+    ResponseEntity<?> deleteCustomer(@PathVariable String id) {
+        customerService.deleteCustomer(id);
+        message = "Successfully deleted customer";
+        statusCode = HttpStatus.OK;
+
+        CommonResponse<?> response = getCommonResponse(message, statusCode);
+        return ResponseEntity
+                .status(statusCode)
+                .body(response);
+    }
 }

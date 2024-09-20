@@ -11,4 +11,11 @@ public class CommonResponseMapper {
                 .statusCode(statusCode)
                 .build();
     }
+
+    public static <T> CommonResponse<T> getCommonResponse(String message ,HttpStatus statusCode) {
+        return CommonResponse.<T>builder()
+                .message(message)
+                .statusCode(statusCode)
+                .build();
+    }
 }

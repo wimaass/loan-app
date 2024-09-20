@@ -11,11 +11,12 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
+@Table(name = PathDb.USER)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AppUser extends AuditEntity{
+public class User extends AuditEntity{
     private String email;
     private String password;
     private List<Role> roles;
