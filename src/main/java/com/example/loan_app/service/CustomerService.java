@@ -8,4 +8,6 @@ import java.util.List;
 public interface CustomerService {
     CustomerResponse createCustomer(CustomerRequest customerRequest);
     List<CustomerResponse> getAllCustomers();
+    CustomerResponse getCustomerById(String id);
+    CustomerResponse updateCustomer(CustomerRequest customerRequest);
 }

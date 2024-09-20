@@ -48,4 +48,17 @@ public class CustomerController {
                 .status(statusCode)
                 .body(response);
     }
+
+    @PutMapping
+    ResponseEntity<?> updateCustomer(@RequestBody CustomerRequest customerRequest) {
+        CustomerResponse customerResponse = customerService.updateCustomer(customerRequest);
+        message = "Successfully updated customer";
+        statusCode = HttpStatus.OK;
+
+        CommonResponse<?> response = getCommonResponse(message, statusCode, customerResponse);
+
+        return ResponseEntity
+                .status(statusCode)
+                .body(response);
+    }
 }
