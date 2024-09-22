@@ -9,10 +9,7 @@ import com.example.loan_app.service.InstalmentTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.example.loan_app.mapper.CommonResponseMapper.getCommonResponse;
 
@@ -29,6 +26,19 @@ public class InstalmentTypeController {
         InstalmentType instalmentType = instalmentTypeService.createInstalmentType(request);
         message = Message.CREATE_SUCCESS + " instalmentType";
         statusCode = HttpStatus.CREATED;
+
+        CommonResponse<?> response = getCommonResponse(message, statusCode, instalmentType);
+
+        return ResponseEntity
+                .status(statusCode)
+                .body(response);
+    }
+
+    @GetMapping(PathApi.GET_ID)
+    ResponseEntity<?> getInstalmentTypeById(@PathVariable String id) {
+        InstalmentType instalmentType = instalmentTypeService.getInstalmentTypeById(id);
+        message = Message.GET_BY_ID_SUCCESS;
+        statusCode = HttpStatus.OK;
 
         CommonResponse<?> response = getCommonResponse(message, statusCode, instalmentType);
 

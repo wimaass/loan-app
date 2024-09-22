@@ -26,4 +26,9 @@ public class InstalmentTypeServiceImpl implements InstalmentTypeService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
+
+    @Override
+    public InstalmentType getInstalmentTypeById(String id) {
+        return instalmentTypeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
 }

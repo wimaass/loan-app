@@ -2,4 +2,6 @@ package com.example.loan_app.constant;
 
 public class Message {
     public static final String CREATE_SUCCESS = "Successfully Created";
+    public static final String GET_ALL_SUCCESS = "Successfully Retrieved All";
+    public static final String GET_BY_ID_SUCCESS = "Successfully Retrieved by Id";
 }

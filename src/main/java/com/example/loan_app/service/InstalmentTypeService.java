@@ -5,4 +5,5 @@ import com.example.loan_app.entity.InstalmentType;
 
 public interface InstalmentTypeService {
     InstalmentType createInstalmentType(InstalmentTypeRequest request);
+    InstalmentType getInstalmentTypeById(String id);
 }
