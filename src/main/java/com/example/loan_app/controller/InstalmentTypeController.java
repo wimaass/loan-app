@@ -4,12 +4,15 @@ import com.example.loan_app.constant.Message;
 import com.example.loan_app.constant.PathApi;
 import com.example.loan_app.dto.request.InstalmentTypeRequest;
 import com.example.loan_app.dto.response.CommonResponse;
+import com.example.loan_app.entity.Customer;
 import com.example.loan_app.entity.InstalmentType;
 import com.example.loan_app.service.InstalmentTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.example.loan_app.mapper.CommonResponseMapper.getCommonResponse;
 
@@ -41,6 +44,19 @@ public class InstalmentTypeController {
         statusCode = HttpStatus.OK;
 
         CommonResponse<?> response = getCommonResponse(message, statusCode, instalmentType);
+
+        return ResponseEntity
+                .status(statusCode)
+                .body(response);
+    }
+
+    @GetMapping
+    ResponseEntity<?> getAllInstalmentTypes() {
+        List<InstalmentType> instalmentTypes = instalmentTypeService.getAllInstalmentTypes();
+        message = Message.GET_ALL_SUCCESS + " instalmentTypes";
+        statusCode = HttpStatus.OK;
+
+        CommonResponse<?> response = getCommonResponse(message, statusCode, instalmentTypes);
 
         return ResponseEntity
                 .status(statusCode)

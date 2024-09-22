@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 import static com.example.loan_app.mapper.InstalmentTypeMapper.mapToInstalmentType;
 
 @Service
@@ -30,5 +32,10 @@ public class InstalmentTypeServiceImpl implements InstalmentTypeService {
     @Override
     public InstalmentType getInstalmentTypeById(String id) {
         return instalmentTypeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @Override
+    public List<InstalmentType> getAllInstalmentTypes() {
+        return instalmentTypeRepository.findAll();
     }
 }
