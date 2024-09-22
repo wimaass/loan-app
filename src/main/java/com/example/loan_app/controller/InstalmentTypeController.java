@@ -75,4 +75,17 @@ public class InstalmentTypeController {
                 .status(statusCode)
                 .body(response);
     }
+
+    @DeleteMapping(PathApi.GET_ID)
+    ResponseEntity<?> deleteInstalmentTypeById(@PathVariable String id) {
+        instalmentTypeService.deleteInstalmentTypeById(id);
+        message = Message.DELETE_SUCCESS + " instalmentType";
+        statusCode = HttpStatus.OK;
+
+        CommonResponse<?> response = getCommonResponse(message, statusCode);
+
+        return ResponseEntity
+                .status(statusCode)
+                .body(response);
+    }
 }

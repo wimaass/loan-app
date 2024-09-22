@@ -47,4 +47,10 @@ public class InstalmentTypeServiceImpl implements InstalmentTypeService {
 
         return instalmentTypeRepository.saveAndFlush(instalmentType);
     }
+
+    @Override
+    public void deleteInstalmentTypeById(String id) {
+        InstalmentType instalmentType = getInstalmentTypeById(id);
+        instalmentTypeRepository.delete(instalmentType);
+    }
 }
