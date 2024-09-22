@@ -10,6 +10,7 @@ import com.example.loan_app.service.InstalmentTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -64,6 +65,7 @@ public class InstalmentTypeController {
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('STAFF')")
     ResponseEntity<?> updateInstalmentType(@RequestBody InstalmentTypeRequest request) {
         InstalmentType instalmentType = instalmentTypeService.updateInstalmentType(request);
         message = Message.UPDATE_SUCCESS + " instalmentType";

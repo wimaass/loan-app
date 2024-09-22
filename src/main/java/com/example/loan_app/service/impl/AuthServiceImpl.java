@@ -56,7 +56,6 @@ public class AuthServiceImpl implements AuthService {
                     .password(passwordEncoder.encode(authRequest.getPassword()))
                     .roles(roles)
                     .build();
-            user.setCreatedAt(LocalDateTime.now());
             userRepository.saveAndFlush(user);
 
             List<String> stringRoles = new ArrayList<>();

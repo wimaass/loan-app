@@ -52,7 +52,6 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setPhone(customerRequest.getPhone());
         customer.setDateOfBirth(customerRequest.getDob());
         customer.setStatus(customerRequest.getStatus());
-        customer.setCreatedAt(LocalDateTime.now());
 
         customerRepository.save(customer);
 

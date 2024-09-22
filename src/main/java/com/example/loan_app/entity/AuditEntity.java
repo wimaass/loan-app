@@ -20,9 +20,11 @@ public class AuditEntity {
     private String id;
 
     @CreatedBy
+    @Column(updatable = false)
     private String createdBy;
 
     @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedBy
