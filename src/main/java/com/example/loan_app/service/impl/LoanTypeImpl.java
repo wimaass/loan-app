@@ -5,9 +5,12 @@ import com.example.loan_app.entity.LoanType;
 import com.example.loan_app.repository.LoanTypeRepository;
 import com.example.loan_app.service.LoanTypeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.loan_app.mapper.LoanTypeMapper.mapToLoanType;
 
@@ -24,7 +27,8 @@ public class LoanTypeImpl implements LoanTypeService {
 
     @Override
     public LoanType getLoanTypeById(String id) {
-        return null;
+        Optional<LoanType> loanType = loanTypeRepository.findById(id);
+        return loanType.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Loan type not found"));
     }
 
     @Override

@@ -9,10 +9,7 @@ import com.example.loan_app.service.LoanTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.example.loan_app.mapper.CommonResponseMapper.getCommonResponse;
 
@@ -29,6 +26,19 @@ public class LoanTypeController {
         LoanType loanType = loanTypeService.createLoanType(request);
         message = Message.CREATE_SUCCESS + " loan-type";
         status = HttpStatus.CREATED;
+
+        CommonResponse<?> response = getCommonResponse(message, status, loanType);
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @GetMapping(PathApi.GET_ID)
+    public ResponseEntity<?> getLoanTypeById(@PathVariable String id) {
+        LoanType loanType = loanTypeService.getLoanTypeById(id);
+        message = Message.GET_BY_ID_SUCCESS;
+        status = HttpStatus.OK;
 
         CommonResponse<?> response = getCommonResponse(message, status, loanType);
 
