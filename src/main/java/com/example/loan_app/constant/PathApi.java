@@ -10,4 +10,6 @@ public class PathApi {
     public static final String SIGN_UP_API= "/signup";
     public static final String SIGN_IN = "/signin";
 
+    public static final String INSTALMENT_TYPE_API = LOAN_APP + "/instalment-types";
+
 }
