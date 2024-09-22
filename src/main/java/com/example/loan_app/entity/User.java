@@ -25,6 +25,6 @@ public class User extends AuditEntity{
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @JsonIgnore
     private List<Role> roles;
 }

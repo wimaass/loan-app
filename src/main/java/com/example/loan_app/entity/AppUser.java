@@ -1,5 +1,6 @@
 package com.example.loan_app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,13 +21,13 @@ public class AppUser implements UserDetails{
     private String id;
     private String email;
     private String password;
-    private List<Role> roles;
+    private List<ERole> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
-        for (Role role : roles) {
-            simpleGrantedAuthorities.add(new SimpleGrantedAuthority(role.getRole().name()));
+        for (ERole role : roles) {
+            simpleGrantedAuthorities.add(new SimpleGrantedAuthority(role.name()));
         }
         return simpleGrantedAuthorities;
     }

@@ -12,6 +12,8 @@ import com.example.loan_app.service.CustomerService;
 import com.example.loan_app.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.logging.Log;
+import org.slf4j.Logger;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -19,6 +21,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,7 +35,6 @@ import java.util.List;
 import static com.example.loan_app.mapper.CustomerMapper.mapToCustomerRequest;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
@@ -73,7 +75,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResponse login(AuthRequest request) {
-        log.info("Login request: {}", authenticationManager.authenticate(request));
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 request.getEmail(),
                 request.getPassword()
@@ -83,19 +84,15 @@ public class AuthServiceImpl implements AuthService {
         AppUser appUser = (AppUser) authentication.getPrincipal();
         String token = jwtUtil.generateToken(appUser);
 
-        return LoginResponse.builder().token(token).build();
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//
-//        AppUser appUser = (AppUser) authentication.getPrincipal();
-//        String token = jwtUtil.generateToken(appUser);
-//
-//        List<String> roles = new ArrayList<>();
-//        for (Role role : appUser.getRoles()) {
-//            roles.add(role.getRole().toString().split("_")[1].toLowerCase());
-//        }
-//        return LoginResponse.builder()
-//                .token(token)
-//                .roles(roles)
-//                .build();
+        List<String> roles = new ArrayList<>();
+        for (GrantedAuthority role : appUser.getAuthorities()) {
+            roles.add(role.toString().split("_")[1].toLowerCase());
+        }
+
+        return LoginResponse.builder()
+                .token(token)
+                .roles(appUser.getRoles())
+                .build();
+
     }
 }

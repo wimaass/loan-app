@@ -1,5 +1,6 @@
 package com.example.loan_app.dto.response;
 
+import com.example.loan_app.entity.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,5 +14,5 @@ import java.util.List;
 @Builder
 public class LoginResponse {
     private String token;
-    private List<String> roles;
+    private List<ERole> roles;
 }
