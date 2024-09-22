@@ -74,4 +74,17 @@ public class LoanTypeController {
                 .status(status)
                 .body(response);
     }
+
+    @DeleteMapping(PathApi.GET_ID)
+    public ResponseEntity<?> deleteLoanType(@PathVariable String id) {
+        loanTypeService.deleteLoanType(id);
+        message = Message.DELETE_SUCCESS;
+        status = HttpStatus.OK;
+
+        CommonResponse<?> response = getCommonResponse(message, status);
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
 }

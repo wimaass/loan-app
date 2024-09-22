@@ -47,6 +47,7 @@ public class LoanTypeImpl implements LoanTypeService {
 
     @Override
     public void deleteLoanType(String id) {
-
+        LoanType loanType = getLoanTypeById(id);
+        loanTypeRepository.delete(loanType);
     }
 }
