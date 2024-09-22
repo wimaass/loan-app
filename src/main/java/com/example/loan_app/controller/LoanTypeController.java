@@ -61,4 +61,17 @@ public class LoanTypeController {
                 .status(status)
                 .body(response);
     }
+
+    @PutMapping
+    public ResponseEntity<?> updateLoanType(@RequestBody LoanTypeRequest request) {
+        LoanType loanType = loanTypeService.updateLoanType(request);
+        message = Message.UPDATE_SUCCESS;
+        status = HttpStatus.OK;
+
+        CommonResponse<?> response = getCommonResponse(message, status, loanType);
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
 }

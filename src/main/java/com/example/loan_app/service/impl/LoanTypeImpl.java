@@ -38,7 +38,11 @@ public class LoanTypeImpl implements LoanTypeService {
 
     @Override
     public LoanType updateLoanType(LoanTypeRequest request) {
-        return null;
+        LoanType loanType = getLoanTypeById(request.getId());
+        loanType.setType(request.getType());
+        loanType.setMaxLoan(request.getMaxLoan());
+
+        return loanTypeRepository.saveAndFlush(loanType);
     }
 
     @Override
