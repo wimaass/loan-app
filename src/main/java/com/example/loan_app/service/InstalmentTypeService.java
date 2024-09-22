@@ -9,4 +9,5 @@ public interface InstalmentTypeService {
     InstalmentType createInstalmentType(InstalmentTypeRequest request);
     InstalmentType getInstalmentTypeById(String id);
     List<InstalmentType> getAllInstalmentTypes();
+    InstalmentType updateInstalmentType(InstalmentTypeRequest request);
 }

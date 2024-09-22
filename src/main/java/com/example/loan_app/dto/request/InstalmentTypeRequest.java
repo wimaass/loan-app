@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class InstalmentTypeRequest {
+    private String id;
     private String instalmentType;
 }

@@ -1,6 +1,7 @@
 package com.example.loan_app.service.impl;
 
 import com.example.loan_app.dto.request.InstalmentTypeRequest;
+import com.example.loan_app.entity.EInstalmentType;
 import com.example.loan_app.entity.InstalmentType;
 import com.example.loan_app.repository.InstalmentTypeRepository;
 import com.example.loan_app.service.InstalmentTypeService;
@@ -37,5 +38,13 @@ public class InstalmentTypeServiceImpl implements InstalmentTypeService {
     @Override
     public List<InstalmentType> getAllInstalmentTypes() {
         return instalmentTypeRepository.findAll();
+    }
+
+    @Override
+    public InstalmentType updateInstalmentType(InstalmentTypeRequest request) {
+        InstalmentType instalmentType = getInstalmentTypeById(request.getId());
+        instalmentType.setInstalmentType(Enum.valueOf(EInstalmentType.class, request.getInstalmentType().toUpperCase()));
+
+        return instalmentTypeRepository.saveAndFlush(instalmentType);
     }
 }

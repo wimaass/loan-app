@@ -62,4 +62,17 @@ public class InstalmentTypeController {
                 .status(statusCode)
                 .body(response);
     }
+
+    @PutMapping
+    ResponseEntity<?> updateInstalmentType(@RequestBody InstalmentTypeRequest request) {
+        InstalmentType instalmentType = instalmentTypeService.updateInstalmentType(request);
+        message = Message.UPDATE_SUCCESS + " instalmentType";
+        statusCode = HttpStatus.OK;
+
+        CommonResponse<?> response = getCommonResponse(message, statusCode, instalmentType);
+
+        return ResponseEntity
+                .status(statusCode)
+                .body(response);
+    }
 }

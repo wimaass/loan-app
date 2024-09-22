@@ -4,4 +4,5 @@ public class Message {
     public static final String CREATE_SUCCESS = "Successfully Created";
     public static final String GET_ALL_SUCCESS = "Successfully Retrieved All";
     public static final String GET_BY_ID_SUCCESS = "Successfully Retrieved by Id";
+    public static final String UPDATE_SUCCESS = "Successfully Updated";
 }
