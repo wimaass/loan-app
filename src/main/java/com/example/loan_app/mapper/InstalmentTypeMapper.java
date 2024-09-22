@@ -7,7 +7,6 @@ import com.example.loan_app.entity.InstalmentType;
 public class InstalmentTypeMapper {
     public static InstalmentType mapToInstalmentType(InstalmentTypeRequest request) {
         return InstalmentType.builder()
-                .id(request.getId())
                 .instalmentType(Enum.valueOf(EInstalmentType.class, request.getInstalmentType().toUpperCase()))
                 .build();
     }

@@ -1,0 +1,39 @@
+package com.example.loan_app.controller;
+
+import com.example.loan_app.constant.Message;
+import com.example.loan_app.constant.PathApi;
+import com.example.loan_app.dto.request.LoanTypeRequest;
+import com.example.loan_app.dto.response.CommonResponse;
+import com.example.loan_app.entity.LoanType;
+import com.example.loan_app.service.LoanTypeService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import static com.example.loan_app.mapper.CommonResponseMapper.getCommonResponse;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping(PathApi.LOAN_TYPE_API)
+public class LoanTypeController {
+    private final LoanTypeService loanTypeService;
+    private static String message;
+    private static HttpStatus status;
+
+    @PostMapping
+    public ResponseEntity<?> createLoanType(@RequestBody LoanTypeRequest request) {
+        LoanType loanType = loanTypeService.createLoanType(request);
+        message = Message.CREATE_SUCCESS + " loan-type";
+        status = HttpStatus.CREATED;
+
+        CommonResponse<?> response = getCommonResponse(message, status, loanType);
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+}
