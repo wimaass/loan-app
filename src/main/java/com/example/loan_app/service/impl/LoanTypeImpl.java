@@ -33,7 +33,7 @@ public class LoanTypeImpl implements LoanTypeService {
 
     @Override
     public List<LoanType> getAllLoanTypes() {
-        return List.of();
+        return loanTypeRepository.findAll();
     }
 
     @Override

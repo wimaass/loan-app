@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.example.loan_app.mapper.CommonResponseMapper.getCommonResponse;
 
 @RestController
@@ -41,6 +43,19 @@ public class LoanTypeController {
         status = HttpStatus.OK;
 
         CommonResponse<?> response = getCommonResponse(message, status, loanType);
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllLoanTypes() {
+        List<LoanType> loanTypes = loanTypeService.getAllLoanTypes();
+        message = Message.GET_ALL_SUCCESS;
+        status = HttpStatus.OK;
+
+        CommonResponse<?> response = getCommonResponse(message, status, loanTypes);
 
         return ResponseEntity
                 .status(status)
