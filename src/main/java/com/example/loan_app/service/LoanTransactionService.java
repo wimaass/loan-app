@@ -5,4 +5,5 @@ import com.example.loan_app.dto.response.LoanTransactionResponse;
 
 public interface LoanTransactionService {
     LoanTransactionResponse createLoanTransaction(LoanTransactionRequest loanTransactionRequest);
+    LoanTransactionResponse getLoanTransactionById(String id);
 }
