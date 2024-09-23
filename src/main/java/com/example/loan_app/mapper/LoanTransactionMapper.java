@@ -8,11 +8,12 @@ import com.example.loan_app.entity.LoanTransaction;
 import com.example.loan_app.entity.LoanType;
 
 public class LoanTransactionMapper {
-    public static LoanTransaction mapToLoanTransaction(LoanType loanType, InstalmentType instalmentType, Customer customer) {
+    public static LoanTransaction mapToLoanTransaction(LoanType loanType, InstalmentType instalmentType, Customer customer, LoanTransactionRequest request) {
         return LoanTransaction.builder()
                 .loanType(loanType)
                 .instalmentType(instalmentType)
                 .customer(customer)
+                .nominal(request.getNominal())
                 .build();
     }
 

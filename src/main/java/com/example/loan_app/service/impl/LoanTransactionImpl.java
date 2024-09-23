@@ -27,7 +27,7 @@ public class LoanTransactionImpl implements LoanTransactionService {
         InstalmentType instalmentType = instalmentTypeService.getInstalmentTypeById(request.getInstalmentTypeId());
         Customer customer = customerService.getCustomer(request.getCustomer());
 
-        LoanTransaction loanTransaction = LoanTransactionMapper.mapToLoanTransaction(loanType, instalmentType, customer);
+        LoanTransaction loanTransaction = LoanTransactionMapper.mapToLoanTransaction(loanType, instalmentType, customer, request);
         loanTransaction.setApprovalStatus(ApprovalStatus.REJECTED);
         loanTransactionRepository.saveAndFlush(loanTransaction);
 

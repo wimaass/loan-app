@@ -14,5 +14,5 @@ public class LoanTransactionRequest {
     private String loanTypeId;
     private String instalmentTypeId;
     private String customer;
-    private String nominal;
+    private Double nominal;
 }
