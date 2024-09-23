@@ -38,8 +38,9 @@ public class LoanTransaction extends AuditEntity{
     private String approvedBy;
 
     @Column(name = "approval_status")
+    @Enumerated(EnumType.STRING)
     private ApprovalStatus approvalStatus;
 
-    @OneToMany(mappedBy = "loanTransaction")
+    @OneToMany(mappedBy = "loanTransaction", cascade = {CascadeType.MERGE, CascadeType.MERGE})
     private List<LoanTransactionDetail> loanTransactionDetails;
 }

@@ -20,6 +20,7 @@ import static com.example.loan_app.mapper.CommonResponseMapper.getCommonResponse
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(PathApi.INSTALMENT_TYPE_API)
+@PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_STAFF')")
 public class InstalmentTypeController {
     private final InstalmentTypeService instalmentTypeService;
     private static String message;
@@ -65,7 +66,6 @@ public class InstalmentTypeController {
     }
 
     @PutMapping
-    @PreAuthorize("hasRole('ADMIN') or hasRole('STAFF')")
     ResponseEntity<?> updateInstalmentType(@RequestBody InstalmentTypeRequest request) {
         InstalmentType instalmentType = instalmentTypeService.updateInstalmentType(request);
         message = Message.UPDATE_SUCCESS + " instalmentType";

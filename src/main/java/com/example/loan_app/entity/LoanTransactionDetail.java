@@ -26,5 +26,6 @@ public class LoanTransactionDetail extends AuditEntity{
     @JoinColumn(name = "loan_transaction_id")
     private LoanTransaction loanTransaction;
 
+    @Enumerated(EnumType.STRING)
     private LoanStatus loanStatus;
 }

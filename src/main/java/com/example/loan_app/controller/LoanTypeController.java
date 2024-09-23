@@ -9,6 +9,7 @@ import com.example.loan_app.service.LoanTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import static com.example.loan_app.mapper.CommonResponseMapper.getCommonResponse
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(PathApi.LOAN_TYPE_API)
+@PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_STAFF')")
 public class LoanTypeController {
     private final LoanTypeService loanTypeService;
     private static String message;

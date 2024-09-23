@@ -14,4 +14,6 @@ public class PathApi {
 
     public static final String LOAN_TYPE_API = LOAN_APP + "/loan-types";
 
+    public static final String TRANSACTION_API = LOAN_APP + "/transactions";
+
 }
