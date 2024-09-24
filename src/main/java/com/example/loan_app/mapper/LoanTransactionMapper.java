@@ -24,6 +24,7 @@ public class LoanTransactionMapper {
                 .instalmentType(loanTransaction.getInstalmentType().getInstalmentType().toString())
                 .customer(loanTransaction.getCustomer().getId())
                 .nominal(loanTransaction.getNominal())
+                .approvalStatus(loanTransaction.getApprovalStatus())
                 .approvedAt(loanTransaction.getApprovedAt())
                 .approvedBy(loanTransaction.getApprovedBy())
                 .loanTransactionDetails(loanTransaction.getLoanTransactionDetails())

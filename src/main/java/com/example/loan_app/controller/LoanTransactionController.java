@@ -2,6 +2,7 @@ package com.example.loan_app.controller;
 
 import com.example.loan_app.constant.Message;
 import com.example.loan_app.constant.PathApi;
+import com.example.loan_app.dto.request.ApprovalRequest;
 import com.example.loan_app.dto.request.LoanTransactionRequest;
 import com.example.loan_app.dto.response.CommonResponse;
 import com.example.loan_app.dto.response.LoanTransactionResponse;
@@ -22,7 +23,7 @@ public class LoanTransactionController {
     public static HttpStatus status;
 
     @PostMapping
-    public ResponseEntity<?> createLoanTransaction(@RequestBody LoanTransactionRequest request){
+    public ResponseEntity<?> createLoanTransaction(@RequestBody LoanTransactionRequest request) {
         LoanTransactionResponse loanTransactionResponse = loanTransactionService.createLoanTransaction(request);
         message = Message.CREATE_SUCCESS + " Transaction";
         status = HttpStatus.CREATED;
@@ -35,9 +36,26 @@ public class LoanTransactionController {
     }
 
     @GetMapping(PathApi.GET_ID)
-    public ResponseEntity<?> getLoanTransactionById(@PathVariable String id){
+    public ResponseEntity<?> getLoanTransactionById(@PathVariable String id) {
         LoanTransactionResponse loanTransactionResponse = loanTransactionService.getLoanTransactionById(id);
         message = Message.GET_BY_ID_SUCCESS;
+        status = HttpStatus.OK;
+
+        CommonResponse<?> response = getCommonResponse(message, status, loanTransactionResponse);
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @PostMapping(PathApi.GET_ID+"/approve")
+    public ResponseEntity<?> approveLoanTransaction(
+            @PathVariable String id,
+            @RequestBody ApprovalRequest request
+    ) {
+        request.setAdminId(id);
+        LoanTransactionResponse loanTransactionResponse = loanTransactionService.approveLoanTransactionByAdmin(request);
+        message = Message.APPROVED;
         status = HttpStatus.OK;
 
         CommonResponse<?> response = getCommonResponse(message, status, loanTransactionResponse);

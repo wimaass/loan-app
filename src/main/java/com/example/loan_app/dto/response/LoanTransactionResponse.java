@@ -21,7 +21,7 @@ public class LoanTransactionResponse {
     private String instalmentType;
     private String customer;
     private Double nominal;
-    private Date approvedAt;
+    private LocalDateTime approvedAt;
     private String approvedBy;
     private ApprovalStatus approvalStatus;
     private List<LoanTransactionDetail> loanTransactionDetails;

@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class LoanTransaction extends AuditEntity{
     private Double nominal;
 
     @Column(name = "approved_at")
-    private Date approvedAt;
+    private LocalDateTime approvedAt;
 
     @Column(name = "approved_by")
     private String approvedBy;

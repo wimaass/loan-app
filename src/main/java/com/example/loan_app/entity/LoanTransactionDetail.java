@@ -21,6 +21,7 @@ public class LoanTransactionDetail extends AuditEntity{
     private Date transactionDate;
 
     private Double nominal;
+
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "loan_transaction_id")

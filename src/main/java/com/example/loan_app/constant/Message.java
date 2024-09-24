@@ -7,4 +7,5 @@ public class Message {
     public static final String NOT_FOUND = "Not Found";
     public static final String UPDATE_SUCCESS = "Successfully Updated";
     public static final String DELETE_SUCCESS = "Successfully Deleted";
+    public static final String APPROVED = "Approved Successfully";
 }
