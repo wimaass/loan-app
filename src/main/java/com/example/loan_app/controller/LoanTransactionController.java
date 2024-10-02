@@ -10,6 +10,7 @@ import com.example.loan_app.service.LoanTransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import static com.example.loan_app.mapper.CommonResponseMapper.getCommonResponse;
@@ -49,6 +50,7 @@ public class LoanTransactionController {
     }
 
     @PostMapping(PathApi.GET_ID+"/approve")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_STAFF')")
     public ResponseEntity<?> approveLoanTransaction(
             @PathVariable String id,
             @RequestBody ApprovalRequest request

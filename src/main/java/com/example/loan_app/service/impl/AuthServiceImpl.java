@@ -10,6 +10,7 @@ import com.example.loan_app.security.JwtUtil;
 import com.example.loan_app.service.AuthService;
 import com.example.loan_app.service.CustomerService;
 import com.example.loan_app.service.RoleService;
+import com.example.loan_app.util.ValidationUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
@@ -42,11 +43,13 @@ public class AuthServiceImpl implements AuthService {
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
     private final RoleService roleService;
+    private final ValidationUtil validationUtil;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public RegisterResponse register(AuthRequest authRequest) {
         try {
+            validationUtil.validate(authRequest);
             List<Role> roles = List.of(
                     roleService.getOrSaveRole(Role.builder().role(ERole.ROLE_ADMIN).build()),
                     roleService.getOrSaveRole(Role.builder().role(ERole.ROLE_STAFF).build())
@@ -74,6 +77,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResponse login(AuthRequest request) {
+        validationUtil.validate(request);
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 request.getEmail(),
                 request.getPassword()

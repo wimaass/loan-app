@@ -9,6 +9,7 @@ import com.example.loan_app.mapper.LoanTransactionMapper;
 import com.example.loan_app.repository.LoanTransactionDetailRepository;
 import com.example.loan_app.repository.LoanTransactionRepository;
 import com.example.loan_app.service.*;
+import com.example.loan_app.util.ValidationUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,10 +32,12 @@ public class LoanTransactionImpl implements LoanTransactionService {
     private final CustomerService customerService;
     private final LoanTransactionDetailRepository loanTransactionDetailRepository;
     private final UserService userService;
+    private final ValidationUtil validationUtil;
 
     @Transactional(rollbackOn = Exception.class)
     @Override
     public LoanTransactionResponse createLoanTransaction(LoanTransactionRequest request) {
+        validationUtil.validate(request);
         LoanType loanType = loanTypeService.getLoanTypeById(request.getLoanTypeId());
         InstalmentType instalmentType = instalmentTypeService.getInstalmentTypeById(request.getInstalmentTypeId());
         Customer customer = customerService.getCustomer(request.getCustomer());
@@ -55,6 +58,7 @@ public class LoanTransactionImpl implements LoanTransactionService {
     @Transactional(rollbackOn = Exception.class)
     @Override
     public LoanTransactionResponse approveLoanTransactionByAdmin(ApprovalRequest request) {
+        validationUtil.validate(request);
         AppUser user = userService.loadUserByUserId(request.getAdminId());
 
         LoanTransaction loanTransaction = getLoanTransactionResponseOrThrowNotFound(request.getLoanTransactionId());

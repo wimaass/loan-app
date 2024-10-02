@@ -18,4 +18,10 @@ public class CommonResponseMapper {
                 .statusCode(statusCode)
                 .build();
     }
+
+    public static <T> CommonResponse<T> getCommonResponse(String message) {
+        return CommonResponse.<T>builder()
+                .message(message)
+                .build();
+    }
 }
