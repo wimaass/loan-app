@@ -66,4 +66,17 @@ public class LoanTransactionController {
                 .status(status)
                 .body(response);
     }
+
+    @PutMapping(PathApi.GET_ID+"/pay")
+    public ResponseEntity<?> payLoanTransaction(@PathVariable String id){
+        LoanTransactionResponse loanTransactionResponse = loanTransactionService.payLoanTransaction(id);
+        message = Message.SUCCESS_PAYMENT;
+        status = HttpStatus.OK;
+
+        CommonResponse<?> response = getCommonResponse(message, status, loanTransactionResponse);
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
 }

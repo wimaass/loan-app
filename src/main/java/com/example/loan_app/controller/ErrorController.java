@@ -4,6 +4,7 @@ import com.example.loan_app.dto.response.CommonResponse;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
@@ -30,6 +31,17 @@ public class ErrorController {
         message = e.getMessage();
         status = HttpStatus.BAD_REQUEST;
 
+        CommonResponse<?> response = getCommonResponse(message, status);
+
+        return ResponseEntity
+                .status(status)
+                .body(response);
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<?> usernameNotFoundException(UsernameNotFoundException e) {
+        message = e.getMessage();
+        status = HttpStatus.UNAUTHORIZED;
         CommonResponse<?> response = getCommonResponse(message, status);
 
         return ResponseEntity

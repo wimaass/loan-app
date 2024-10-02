@@ -33,6 +33,7 @@ public class LoanTransactionImpl implements LoanTransactionService {
     private final LoanTransactionDetailRepository loanTransactionDetailRepository;
     private final UserService userService;
     private final ValidationUtil validationUtil;
+    private final LoanTransactionDetailService loanTransactionDetailService;
 
     @Transactional(rollbackOn = Exception.class)
     @Override
@@ -62,6 +63,10 @@ public class LoanTransactionImpl implements LoanTransactionService {
         AppUser user = userService.loadUserByUserId(request.getAdminId());
 
         LoanTransaction loanTransaction = getLoanTransactionResponseOrThrowNotFound(request.getLoanTransactionId());
+        if(loanTransaction.getApprovalStatus().equals(ApprovalStatus.APPROVED)){
+            System.out.println("Approved loan transaction");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Already approved");
+        }
         loanTransaction.setApprovalStatus(ApprovalStatus.APPROVED);
         loanTransaction.setApprovedAt(LocalDateTime.now());
         loanTransaction.setApprovedBy(user.getEmail());
@@ -86,8 +91,19 @@ public class LoanTransactionImpl implements LoanTransactionService {
         return mapToLoanTransactionResponse(loanTransaction);
     }
 
+    @Override
+    public LoanTransactionResponse payLoanTransaction(String id) {
+        LoanTransaction loanTransaction = getLoanTransactionResponseOrThrowNotFound(id);
+        List<LoanTransactionDetail> loanTransactionDetails = loanTransactionDetailService.getUnpaid(id);
+        loanTransactionDetailService.update(loanTransactionDetails.get(0));
+
+        return mapToLoanTransactionResponse(loanTransaction);
+    }
+
     private LoanTransaction getLoanTransactionResponseOrThrowNotFound(String id) {
         Optional<LoanTransaction> loanTransaction = loanTransactionRepository.findById(id);
         return loanTransaction.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction " + Message.NOT_FOUND));
     }
+
+
 }

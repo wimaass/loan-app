@@ -8,4 +8,5 @@ public interface LoanTransactionService {
     LoanTransactionResponse createLoanTransaction(LoanTransactionRequest loanTransactionRequest);
     LoanTransactionResponse getLoanTransactionById(String id);
     LoanTransactionResponse approveLoanTransactionByAdmin(ApprovalRequest request);
+    LoanTransactionResponse payLoanTransaction(String id);
 }

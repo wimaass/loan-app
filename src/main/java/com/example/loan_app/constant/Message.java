@@ -8,6 +8,7 @@ public class Message {
     public static final String UPDATE_SUCCESS = "Successfully Updated";
     public static final String DELETE_SUCCESS = "Successfully Deleted";
     public static final String APPROVED = "Approved Successfully";
+    public static final String SUCCESS_PAYMENT = "Payment Successfully";
 
     public static final String REQUIRED_LOAN_TYPE_ID = "Loan type id is required";
     public static final String REQUIRED_INSTALMENT_TYPE = "Instalment type is required";
