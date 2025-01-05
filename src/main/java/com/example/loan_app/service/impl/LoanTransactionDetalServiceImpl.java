@@ -19,7 +19,7 @@ public class LoanTransactionDetalServiceImpl implements LoanTransactionDetailSer
 
     @Override
     public List<LoanTransactionDetail> getUnpaid(String id){
-        List<LoanTransactionDetail> unpaid = loanTransactionDetailRepository.findByLoanStatusAndLoanTransactionId(LoanStatus.UNPAID, id);
+        List<LoanTransactionDetail> unpaid = loanTransactionDetailRepository.findByLoanStatusAndLoanTransactionId(LoanStatus.UNPAID.name(), id);
         if (unpaid == null || unpaid.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Already all paid");
         }

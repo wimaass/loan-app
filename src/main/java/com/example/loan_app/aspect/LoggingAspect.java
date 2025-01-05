@@ -19,7 +19,6 @@ public class LoggingAspect {
     public void logAfterControllerMethods(JoinPoint joinPoint, Object result) {
         System.out.println("LoggingAspect - After Controller: " + joinPoint.getSignature().getName() +
                 " in " + joinPoint.getSignature().getDeclaringTypeName());
-        System.out.println("Result: " + result);
     }
 
     @Before("execution(* com.example.loan_app.service..*(..))")
@@ -32,7 +31,6 @@ public class LoggingAspect {
     public void logAfterServiceMethods(JoinPoint joinPoint, Object result) {
         System.out.println("LoggingAspect - After Service: " + joinPoint.getSignature().getName() +
                 " in " + joinPoint.getSignature().getDeclaringTypeName());
-        System.out.println("Result: " + result);
     }
 
     @Before("execution(* com.example.loan_app.repository..*(..))")
@@ -45,6 +43,6 @@ public class LoggingAspect {
     public void logAfterRepositoryMethods(JoinPoint joinPoint, Object result) {
         System.out.println("LoggingAspect - After Repository: " + joinPoint.getSignature().getName() +
                 " in " + joinPoint.getSignature().getDeclaringTypeName());
-        System.out.println("Result: " + result);
+//        System.out.println("Result: " + result);
     }
 }

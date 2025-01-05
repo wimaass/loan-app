@@ -1,6 +1,7 @@
 package com.example.loan_app.entity;
 
 import com.example.loan_app.constant.PathDb;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,5 +44,6 @@ public class LoanTransaction extends AuditEntity{
     private ApprovalStatus approvalStatus;
 
     @OneToMany(mappedBy = "loanTransaction", cascade = {CascadeType.MERGE, CascadeType.MERGE})
+    @JsonManagedReference
     private List<LoanTransactionDetail> loanTransactionDetails;
 }
