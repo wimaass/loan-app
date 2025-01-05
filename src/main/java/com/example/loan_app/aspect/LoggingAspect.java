@@ -34,4 +34,17 @@ public class LoggingAspect {
                 " in " + joinPoint.getSignature().getDeclaringTypeName());
         System.out.println("Result: " + result);
     }
+
+    @Before("execution(* com.example.loan_app.repository..*(..))")
+    public void logBeforeRepositoryMethods(JoinPoint joinPoint) {
+        System.out.println("LoggingAspect - Before Repository: " + joinPoint.getSignature().getName() +
+                " in " + joinPoint.getSignature().getDeclaringTypeName());
+    }
+
+    @AfterReturning(pointcut = "execution(* com.example.loan_app.repository..*(..))", returning = "result")
+    public void logAfterRepositoryMethods(JoinPoint joinPoint, Object result) {
+        System.out.println("LoggingAspect - After Repository: " + joinPoint.getSignature().getName() +
+                " in " + joinPoint.getSignature().getDeclaringTypeName());
+        System.out.println("Result: " + result);
+    }
 }
