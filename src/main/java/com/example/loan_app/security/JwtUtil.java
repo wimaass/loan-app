@@ -61,7 +61,7 @@ public class JwtUtil {
             DecodedJWT decodedJWT = verifier.verify(token);
             return decodedJWT.getIssuer().equals(appName);
         } catch (JWTCreationException exception) {
-            log.error("Invalid verification JWT : ", exception.getMessage());
+            log.error("Invalid verification JWT : {}", exception.getMessage());
             return false;
         }
     }

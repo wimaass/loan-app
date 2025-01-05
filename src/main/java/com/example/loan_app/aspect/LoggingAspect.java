@@ -1,0 +1,24 @@
+package com.example.loan_app.aspect;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
+public class LoggingAspect {
+    @Before("execution(* com.example.loan_app.controller..*(..))")
+    public void logBeforeControllerMethods(JoinPoint joinPoint) {
+        System.out.println("LoggingAspect - Before Method: " + joinPoint.getSignature().getName() +
+                " in " + joinPoint.getSignature().getDeclaringTypeName());
+    }
+
+    @AfterReturning(pointcut = "execution(* com.example.loan_app.controller..*(..))", returning = "result")
+    public void logAfterControllerMethods(JoinPoint joinPoint, Object result) {
+        System.out.println("LoggingAspect - After Method: " + joinPoint.getSignature().getName() +
+                " in " + joinPoint.getSignature().getDeclaringTypeName());
+        System.out.println("Result: " + result);
+    }
+}

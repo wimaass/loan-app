@@ -42,7 +42,7 @@ public class AuthController {
     @PostMapping(PathApi.SIGN_IN)
     ResponseEntity<?> signIn (@RequestBody AuthRequest authRequest) {
         LoginResponse loginResponse = authService.login(authRequest);
-        log.info("SignIn request: {}", loginResponse);
+//        log.info("SignIn request: {}", loginResponse);
         message = "Successfully logged in!";
         statusCode = HttpStatus.OK;
 
